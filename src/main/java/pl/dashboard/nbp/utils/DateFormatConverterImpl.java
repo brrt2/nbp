@@ -6,17 +6,17 @@ import java.util.Date;
 
 public class DateFormatConverterImpl implements DateFormatConverter {
 
-    public String transformDateFormat(String date) {
+    private static final String OLD_FORMAT = "yyyy-MM-dd";
+    private static final String NEW_FORMAT = "dd.MM.yyyy";
 
-        final String OLD_FORMAT = "yyyy-MM-dd";
-        final String NEW_FORMAT = "dd.MM.yyyy";
+    public String transformDateFormat(final String date) {
 
         SimpleDateFormat formatter = new SimpleDateFormat(OLD_FORMAT);
-        Date dateToFormat = null;
+        Date dateToFormat;
         try {
             dateToFormat = formatter.parse(date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("The provided data format is not correct");
         }
         formatter.applyPattern(NEW_FORMAT);
         return formatter.format(dateToFormat);

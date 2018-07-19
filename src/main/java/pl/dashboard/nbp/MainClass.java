@@ -1,17 +1,20 @@
 package pl.dashboard.nbp;
 
-import pl.dashboard.nbp.validation.DateValidator;
+import pl.dashboard.nbp.repository.HttpProviderImpl;
 import pl.dashboard.nbp.validation.DateValidatorImpl;
 
+import java.util.Optional;
 
 public class MainClass {
 
     public static void main(String[] args)  {
 
-//      String providedDate = args[0];
+      String providedDate = args[0];
 
-        DateValidator dateValidator = new DateValidatorImpl();
-        dateValidator.validateDate("2018-04-04");
+        Optional.ofNullable(providedDate)
+                .orElseThrow(IllegalArgumentException::new);
+
+        new HttpProviderImpl(new DateValidatorImpl()).obtainCurrencyData("2018-04-04");
     }
 
 }
