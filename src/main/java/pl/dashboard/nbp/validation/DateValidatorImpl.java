@@ -5,7 +5,6 @@ import pl.dashboard.nbp.repository.HttpProviderImpl;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class DateValidatorImpl implements DateValidator {
 
@@ -14,7 +13,6 @@ public class DateValidatorImpl implements DateValidator {
         if(isThisDateValid(date,"yyyy-MM-dd")){
             launchHttpProvider(date);
         }
-
     }
 
     private boolean isThisDateValid(String dateToValidate, String dateFromat){
@@ -37,7 +35,6 @@ public class DateValidatorImpl implements DateValidator {
 
         return true;
     }
-
 
     private void launchHttpProvider(String date) {
 

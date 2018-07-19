@@ -7,40 +7,45 @@ import com.sun.jersey.api.client.WebResource;
 import pl.dashboard.nbp.model.CurrencyResponse;
 import pl.dashboard.nbp.utils.MessagePrinterImpl;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HttpProviderImpl implements HttpProvider {
 
+    private static final String[] desiredCurrencyCodes = {"eur","chf","usd","gbp"};
 
-    public void obtainCurrencyData(String date) throws IOException {
+    public void obtainCurrencyData(final String date)  {
 
-        List<String> listOfCurrencyCodes = new ArrayList<>(Arrays.asList("eur","chf","usd","gbp"));
-        List<CurrencyResponse> listOfResponses = new ArrayList<>();
+        List<CurrencyResponse> listOfResponses = Collections.unmodifiableList(Arrays.asList(desiredCurrencyCodes))
+                .parallelStream()
+                .map(code->{
+                    WebResource webResource = Client.create().resource("http://api.nbp.pl/api/exchangerates/rates/c/"+ code + "/"+ date+ "/");
+                    ClientResponse clientResponse = webResource.accept("application/json").get(ClientResponse.class);
+                    CurrencyResponse currencyResponse = null;
+                    try {
+                        currencyResponse = new ObjectMapper().readValue(clientResponse.getEntity(String.class),CurrencyResponse.class);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                   checkIfHttpStatusOk(clientResponse.getStatus());
+                    return currencyResponse;
+                })
+                .collect(Collectors.toList());
 
-        Client client = Client.create();
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        for (String code : listOfCurrencyCodes) {
-
-            WebResource webResource = client.resource("http://api.nbp.pl/api/exchangerates/rates/c/"+ code + "/"+ date+ "/");
-            ClientResponse clientResponse = webResource.accept("application/json").get(ClientResponse.class);
-            String obtainedJson = clientResponse.getEntity(String.class);
-            CurrencyResponse currencyResponse = objectMapper.readValue(obtainedJson,CurrencyResponse.class);
-            if(clientResponse.getStatus() != 200) {
-                throw new RuntimeException("HTTP error " + clientResponse.getStatus());
-            }
-            listOfResponses.add(currencyResponse);
-        }
-
-        launchPrinter(listOfResponses);
-
+        launchPrinter(listOfResponses, date);
     }
 
-    private void launchPrinter(List<CurrencyResponse> responseList) {
-
-        new MessagePrinterImpl().printMessage(responseList);
-
+    private void launchPrinter(List<CurrencyResponse> responseList, final String date) {
+        new MessagePrinterImpl().printMessage(responseList, date);
     }
+
+    private boolean checkIfHttpStatusOk(int status) {
+        if(status != 200) {
+            throw new RuntimeException("HTTP error with status " + status);
+        } else return true;
+    }
+
+
 }

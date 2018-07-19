@@ -6,22 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Rate {
 
-    @JsonProperty("effectiveDate")
-    private String effectiveDate;
     @JsonProperty("bid")
     private Double bid;
     @JsonProperty("ask")
     private Double ask;
-
-    @JsonProperty("effectiveDate")
-    public String getEffectiveDate() {
-        return effectiveDate;
-    }
-
-    @JsonProperty("effectiveDate")
-    public void setEffectiveDate(String effectiveDate) {
-        this.effectiveDate = effectiveDate;
-    }
 
     @JsonProperty("bid")
     public Double getBid() {
@@ -45,8 +33,6 @@ public class Rate {
 
     @Override
     public String toString() {
-        return
-                "Sprzedaż " + bid +
-                " Kupno " + ask  + " Data " + effectiveDate;
+        return bid + ";  " +  ask;
     }
 }
