@@ -3,6 +3,7 @@ package pl.dashboard.nbp.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 public class DateFormatConverterImpl implements DateFormatConverter {
 
@@ -10,6 +11,9 @@ public class DateFormatConverterImpl implements DateFormatConverter {
     private static final String NEW_FORMAT = "dd.MM.yyyy";
 
     public String transformDateFormat(final String date) {
+
+        Optional.ofNullable(date)
+                .orElseThrow(()-> new IllegalArgumentException("No date has been provided"));
 
         SimpleDateFormat formatter = new SimpleDateFormat(OLD_FORMAT);
         Date dateToFormat;

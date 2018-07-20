@@ -3,6 +3,13 @@ package pl.dashboard.nbp.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents the required fields from the collection object contained inside the response received
+ * from the API of the Polish National Bank.
+ *
+ * @author  Bartosz Pieczara
+ */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Rate {
 

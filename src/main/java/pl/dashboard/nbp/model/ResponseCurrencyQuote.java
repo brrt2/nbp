@@ -1,11 +1,18 @@
 package pl.dashboard.nbp.model;
 
-import java.util.List;
+import java.util.*;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents the response received from the API of the Polish National Bank.
+ *
+ * @author  Bartosz Pieczara
+ */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CurrencyResponse {
+public class ResponseCurrencyQuote {
 
     @JsonProperty("code")
     private String code;
@@ -35,8 +42,6 @@ public class CurrencyResponse {
     @Override
     public String toString() {
 
-
-        return
-                code +" "+"=" + rates;
+        return code +" "+"=" + rates;
     }
 }

@@ -1,17 +1,16 @@
 package pl.dashboard.nbp.utils;
 
-import pl.dashboard.nbp.model.CurrencyResponse;
+import pl.dashboard.nbp.model.ResponseCurrencyQuote;
 import java.util.List;
 
 public class MessagePrinterImpl implements MessagePrinter {
 
-    public void printMessage(List<CurrencyResponse> currencyResponseList, final String date)  {
+    public void printMessage(List<ResponseCurrencyQuote> responseCurrencyQuoteList, final String date)  {
 
         System.out.printf("%-3s %s\n","Data:",new DateFormatConverterImpl().transformDateFormat(date));
         System.out.printf("%-10s %s %s\n","Waluta = ", "kupno;"," sprzedaż");
 
-        currencyResponseList.forEach(currencyResponse-> System.out.printf("%-10s %s %s\n", currencyResponse.getCode(), currencyResponse.getRates().get(0).getAsk()+";", currencyResponse.getRates().get(0).getBid()));
-
+        responseCurrencyQuoteList.forEach(responseCurrencyQuote -> System.out.printf("%-10s %s %s\n", responseCurrencyQuote.getCode(), responseCurrencyQuote.getRates().get(0).getAsk()+";", responseCurrencyQuote.getRates().get(0).getBid()));
     }
 
 

@@ -1,7 +1,11 @@
 package pl.dashboard.nbp.utils;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pl.dashboard.nbp.validation.DateValidator;
+import pl.dashboard.nbp.validation.DateValidatorImpl;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.testng.Assert.*;
 
@@ -26,18 +30,32 @@ public class DateFormatConverterImplTest {
         };
     }
 
+    private DateFormatConverter dateFormatConverter;
+
+    @BeforeMethod
+    public void setUp(){
+       dateFormatConverter = new DateFormatConverterImpl();
+    }
+
 
     @Test(dataProvider = "provideCorrectDates")
     public void shouldReturnTransformedStringWhenProvidedCorrectInput(String input, String output){
 
-      assertThat(new DateFormatConverterImpl().transformDateFormat(input)).isEqualTo(output);
+      assertThat(dateFormatConverter.transformDateFormat(input)).isEqualTo(output);
 
     }
 
     @Test(dataProvider = "provideIncorrectDates",expectedExceptions = IllegalArgumentException.class)
-    public void shouldThrowExceptionIfInputIsIncorrectOrNull(String input, String output){
+    public void shouldThrowExceptionIfInputIsIncorrect(String input, String output){
 
-        assertThat(new DateFormatConverterImpl().transformDateFormat(input)).isEqualTo(output);
+        assertThat(dateFormatConverter.transformDateFormat(input)).isEqualTo(output);
+
+    }
+
+    @Test(dataProvider = "provideIncorrectDates",expectedExceptions = IllegalArgumentException.class)
+    public void shouldThrowExceptionIfInputIsNull(String input, String output){
+
+        assertThat(dateFormatConverter.transformDateFormat(input)).isEqualTo(output);
 
     }
 

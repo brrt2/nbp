@@ -1,7 +1,9 @@
 package pl.dashboard.nbp.validation;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import java.util.Optional;
 
 public class DateValidatorImpl implements DateValidator {
@@ -11,16 +13,21 @@ public class DateValidatorImpl implements DateValidator {
     public boolean isDateValid(final String dateToValidate){
 
         Optional.ofNullable(dateToValidate)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(()-> new IllegalArgumentException("No date has been provided"));
 
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
-        dateFormatter.setLenient(false);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        LocalDate date;
 
         try {
-            dateFormatter.parse(dateToValidate);
-        } catch (ParseException e) {
-            System.out.println("The provided data format is not correct");
+            date = LocalDate.parse(dateToValidate, formatter);
+        }
+        catch (DateTimeParseException exc) {
+            System.err.printf("%s is not a correct date format%n", dateToValidate);
             return false;
+        }
+
+        if(date.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("The provided date refers to the future");
         }
         return true;
     }

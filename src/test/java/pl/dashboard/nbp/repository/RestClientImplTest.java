@@ -5,18 +5,23 @@ import pl.dashboard.nbp.validation.DateValidator;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
 
-public class HttpProviderImplTest {
+public class RestClientImplTest {
+
+    private static final String SAMPLE_DATE = "2018-04-04";
 
     @Test
     public void shouldCallTheIsValidDateMethodWhenThisMethodCalled() {
 
-        String date = "2018-04-04";
+        // Arrange
         DateValidator dateValidator = mock(DateValidator.class);
-        when(dateValidator.isDateValid(date)).thenReturn(true);
-        new HttpProviderImpl(dateValidator).obtainCurrencyData(date);
-        verify(dateValidator).isDateValid(date);
+        when(dateValidator.isDateValid(SAMPLE_DATE)).thenReturn(true);
+
+        // Act
+        new RestClientImpl(dateValidator).obtainCurrencyData(SAMPLE_DATE);
+
+        // Assert
+        verify(dateValidator).isDateValid(SAMPLE_DATE);
 
     }
 
