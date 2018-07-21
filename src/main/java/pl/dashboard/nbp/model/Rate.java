@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Represents the required fields from the collection object contained inside the response received
  * from the API of the Polish National Bank.
  *
- * @author  Bartosz Pieczara
+ * @author Bartosz Pieczara
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -40,6 +40,6 @@ public class Rate {
 
     @Override
     public String toString() {
-        return bid + ";  " +  ask;
+        return bid + ";  " + ask;
     }
 }

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents the response received from the API of the Polish National Bank.
  *
- * @author  Bartosz Pieczara
+ * @author Bartosz Pieczara
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -42,6 +42,6 @@ public class ResponseCurrencyQuote {
     @Override
     public String toString() {
 
-        return code +" "+"=" + rates;
+        return code + " " + "=" + rates;
     }
 }

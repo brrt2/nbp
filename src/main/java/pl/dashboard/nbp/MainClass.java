@@ -5,14 +5,9 @@ import pl.dashboard.nbp.validation.DateValidatorImpl;
 
 public class MainClass {
 
-    public static void main(String[] args)  {
-//
-//      String providedDate = args[0];
-//
-//        Optional.ofNullable(providedDate)
-//                .orElseThrow(IllegalArgumentException::new);
+    public static void main(String[] args) {
 
-        new RestClientImpl(new DateValidatorImpl()).obtainCurrencyData("2018-04-04");
+        new RestClientImpl(new DateValidatorImpl()).getCurrencyQuote(args[0]);
     }
 
 }

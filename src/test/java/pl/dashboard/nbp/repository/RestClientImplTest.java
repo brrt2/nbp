@@ -18,7 +18,7 @@ public class RestClientImplTest {
         when(dateValidator.isDateValid(SAMPLE_DATE)).thenReturn(true);
 
         // Act
-        new RestClientImpl(dateValidator).obtainCurrencyData(SAMPLE_DATE);
+        new RestClientImpl(dateValidator).getCurrencyQuote(SAMPLE_DATE);
 
         // Assert
         verify(dateValidator).isDateValid(SAMPLE_DATE);
