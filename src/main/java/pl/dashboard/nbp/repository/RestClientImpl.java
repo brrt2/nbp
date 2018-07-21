@@ -22,6 +22,7 @@ public class RestClientImpl implements RestClient {
     private final DateValidator dateValidator;
 
     public RestClientImpl(DateValidator dateValidator) {
+
         this.dateValidator = dateValidator;
     }
 

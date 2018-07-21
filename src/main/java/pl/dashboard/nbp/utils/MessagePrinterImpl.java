@@ -14,7 +14,9 @@ public class MessagePrinterImpl implements MessagePrinter {
         System.out.printf("%-3s %s\n", "Data:", new DateFormatConverterImpl().transformDateFormat(date));
         System.out.printf("%-10s %s %s\n", "Waluta = ", "kupno;", " sprzedaz");
 
-        responseCurrencyQuoteList.forEach(responseCurrencyQuote -> System.out.printf("%-10s %s %s\n", responseCurrencyQuote.getCode(), responseCurrencyQuote.getRates().get(0).getAsk() + ";", responseCurrencyQuote.getRates().get(0).getBid()));
+        responseCurrencyQuoteList.forEach(responseCurrencyQuote -> System.out.printf("%-10s %s %s\n",
+                responseCurrencyQuote.getCode(), responseCurrencyQuote.getAskValue() +
+                        ";", responseCurrencyQuote.getBidValue()));
     }
 
 }

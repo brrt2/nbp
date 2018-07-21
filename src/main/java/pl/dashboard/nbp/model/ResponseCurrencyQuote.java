@@ -17,7 +17,7 @@ public class ResponseCurrencyQuote {
     @JsonProperty("code")
     private String code;
     @JsonProperty("rates")
-    private List<Rate> rates = null;
+    private List<Rate> rates;
 
     @JsonProperty("code")
     public String getCode() {
@@ -37,6 +37,14 @@ public class ResponseCurrencyQuote {
     @JsonProperty("rates")
     public void setRates(List<Rate> rates) {
         this.rates = rates;
+    }
+
+    public double getAskValue() {
+       return rates.get(0).getAsk();
+    }
+
+    public double getBidValue() {
+        return rates.get(0).getBid();
     }
 
     @Override

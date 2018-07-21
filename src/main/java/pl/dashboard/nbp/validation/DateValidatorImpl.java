@@ -26,7 +26,7 @@ public class DateValidatorImpl implements DateValidator {
         }
 
         if (date.isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("The provided date refers to the future");
+            throw new IllegalArgumentException("The provided date "+ dateToValidate+ " refers to the future");
         }
         return true;
     }
