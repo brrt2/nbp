@@ -1,4 +1,4 @@
-package pl.dashboard.nbp.model;
+package pl.dashboard.nbp;
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class ResponseCurrencyQuote {
     }
 
     public double getAskValue() {
-       return rates.get(0).getAsk();
+        return rates.get(0).getAsk();
     }
 
     public double getBidValue() {

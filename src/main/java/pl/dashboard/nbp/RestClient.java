@@ -1,4 +1,4 @@
-package pl.dashboard.nbp.repository;
+package pl.dashboard.nbp;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package pl.dashboard.nbp.validation;
+package pl.dashboard.nbp;
 
 /**
  * Supplies a method allowing to validate a date argument passed as String.

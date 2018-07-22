@@ -1,6 +1,4 @@
-package pl.dashboard.nbp.utils;
-
-import pl.dashboard.nbp.model.ResponseCurrencyQuote;
+package pl.dashboard.nbp;
 
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;

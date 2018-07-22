@@ -1,7 +1,9 @@
-package pl.dashboard.nbp.repository;
+package pl.dashboard.nbp;
 
 import org.testng.annotations.Test;
-import pl.dashboard.nbp.validation.DateValidator;
+import pl.dashboard.nbp.DateValidator;
+import pl.dashboard.nbp.RestClientImpl;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

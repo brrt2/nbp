@@ -1,9 +1,14 @@
-package pl.dashboard.nbp.utils;
+package pl.dashboard.nbp;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+/**
+ * This class converts the provided date format into the specified one.
+ *
+ * @author Bartosz Pieczara
+ */
 public class DateFormatConverterImpl implements DateFormatConverter {
 
     private static final String NEW_FORMAT = "dd.MM.yyyy";

@@ -1,4 +1,4 @@
-package pl.dashboard.nbp.utils;
+package pl.dashboard.nbp;
 
 /**
  * Provides a method for transforming a date provided as String into a different one.

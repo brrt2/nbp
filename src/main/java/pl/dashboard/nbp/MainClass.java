@@ -1,13 +1,15 @@
 package pl.dashboard.nbp;
 
-import pl.dashboard.nbp.repository.RestClientImpl;
-import pl.dashboard.nbp.validation.DateValidatorImpl;
-
+/**
+ * This is the launching class.
+ *
+ * @author Bartosz Pieczara
+ */
 public class MainClass {
 
     public static void main(String[] args) {
 
-        if(args.length < 1) {
+        if (args == null || args.length == 0) {
             throw new IllegalArgumentException("No date has been provided");
         }
 

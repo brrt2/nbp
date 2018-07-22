@@ -1,12 +1,12 @@
-package pl.dashboard.nbp.utils;
+package pl.dashboard.nbp;
 
-import pl.dashboard.nbp.model.ResponseCurrencyQuote;
-
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+/**
+ * This class prints the provided currency quotes list in the desired format.
+ *
+ * @author Bartosz Pieczara
+ */
 public class MessagePrinterImpl implements MessagePrinter {
 
     public void printMessage(List<ResponseCurrencyQuote> responseCurrencyQuoteList, final String date) {

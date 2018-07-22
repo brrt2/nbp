@@ -1,15 +1,16 @@
-package pl.dashboard.nbp.validation;
+package pl.dashboard.nbp;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class DateValidatorImplTest {
 
     @DataProvider
-   private Object[][] provideIncorrectDates() {
-        return new Object[][] {
+    private Object[][] provideIncorrectDates() {
+        return new Object[][]{
                 {"04.04.2015"},
                 {"03-05-2014"},
                 {"01/02/2013"},
@@ -28,21 +29,26 @@ public class DateValidatorImplTest {
                 {""},
                 {" "},
                 {" !@#$,"},
+                {"12.12.12"},
+                {" 2018-04-04 "},
+                {" 2018-04-04"},
+                {"2018-04-04 "},
+                {"2018-02-31 "}
         };
     }
 
     @DataProvider
     private Object[][] provideCorrectDates() {
-        return new Object[][] {
+        return new Object[][]{
                 {"2018-04-04"},
                 {"2014-03-04"},
-                {"2015-12-05"}
+                {"2015-12-12"}
         };
     }
 
     @DataProvider
     private Object[][] provideFutureDates() {
-        return new Object[][] {
+        return new Object[][]{
                 {"2028-09-04"},
                 {"2024-05-04"},
                 {"2019-10-05"},
@@ -53,7 +59,7 @@ public class DateValidatorImplTest {
     private DateValidator dateValidator;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         dateValidator = new DateValidatorImpl();
     }
 
@@ -61,7 +67,7 @@ public class DateValidatorImplTest {
     @Test(dataProvider = "provideIncorrectDates")
     public void shouldReturnFalseWhenProvidedIncorrectDate(String date) {
 
-      assertThat(dateValidator.isDateValid(date)).isFalse();
+        assertThat(dateValidator.isDateValid(date)).isFalse();
     }
 
     @Test(dataProvider = "provideCorrectDates")
@@ -77,7 +83,7 @@ public class DateValidatorImplTest {
         dateValidator.isDateValid(null);
     }
 
-    @Test(dataProvider = "provideFutureDates",expectedExceptions = IllegalArgumentException.class)
+    @Test(dataProvider = "provideFutureDates", expectedExceptions = IllegalArgumentException.class)
     public void shouldReturnFalseWhenFutureDatePassedAsArgument(String date) {
 
         dateValidator.isDateValid(date);

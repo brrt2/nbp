@@ -1,4 +1,4 @@
-package pl.dashboard.nbp.model;
+package pl.dashboard.nbp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
